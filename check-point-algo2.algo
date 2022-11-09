@@ -1,0 +1,38 @@
+ALGORITHM Hash table
+VAR 
+   Set1 : ARRAY_OF INTEGER[50];
+   Set2 : ARRAY_OF INTEGER[50];
+   htab: HASH_TABLE < INTEGER,INTEGER>;
+   Set_key: ARRAY_OF INTEGER[50];
+   i : INTEGER;
+   j : INTEGER;
+   sum: INTEGER := 0;
+
+BEGIN 
+ FOR i FROM 0 TO Set1.length-1 DO
+       IF (htab.lookup(Set1[i]) = TRUE) THEN
+           count := htab.get(Set1[i]);
+           htab.insert(Set1[i],count+1);
+       ELSE
+           htab.insert(Set1[i],1);
+       END_IF
+  END_FOR
+
+  FOR j FROM 0 TO Set2.length-1 DO
+       IF (htab.lookup(Set2[j]) = TRUE) THEN
+           count := htab.get(Set2[j]);
+           htab.insert(Set2[j],count+1);
+       ELSE
+           htab.insert(Set2[j],1);
+       END_IF
+  END_FOR
+
+   Set_key:= htab.getkeys();
+   FOR i FROM 0 TO Set_key.length -1 DO
+       IF (htab.get(Set_key[i]) = 1) THEN
+          sum := sum + Set_key[i];
+           BREAK;
+       END_IF
+   END_FOR
+
+END
